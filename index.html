@@ -13,51 +13,35 @@
         }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; }
         .container { max-width: 1000px; margin: auto; }
-        .header-title { text-align: center; color: #222; margin-bottom: 40px; font-weight: bold; }
+        .header-title { text-align: center; color: #222; margin-bottom: 40px; font-weight: bold; font-size: 28px; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
         
         /* تصميم الأقسام */
-        .network-section { background: white; border-radius: 20px; padding: 30px; margin-bottom: 40px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); position: relative; }
+        .network-section { background: white; border-radius: 20px; padding: 30px; margin-bottom: 40px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); }
         
-        /* ترويسة اللوجو */
-        .network-header { text-align: center; margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-        .network-header img { height: 70px; width: auto; transition: transform 0.3s; }
-        .network-header img:hover { transform: scale(1.1); }
+        /* ترويسة النص بدلاً من اللوجو */
+        .network-name { text-align: center; margin-bottom: 25px; padding: 15px; border-radius: 10px; font-size: 32px; font-weight: 900; letter-spacing: 1px; }
         
+        /* ألوان الترويسة */
+        .voda-text { color: white; background-color: var(--vodafone); }
+        .eti-text { color: white; background-color: var(--etisalat); }
+        .ora-text { color: white; background-color: var(--orange); }
+        .we-text { color: white; background-color: var(--we); }
+
         /* شبكة العروض */
         .offers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .offer-card { border-radius: 15px; padding: 20px; text-align: center; transition: 0.3s; background: #fff; border: 1px solid #f0f0f0; }
         .offer-card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        
         .offer-card h3 { margin: 10px 0; font-size: 1.2rem; color: #333; }
         .offer-card .price { font-size: 26px; font-weight: 800; margin: 15px 0; }
         .offer-card .duration { color: #888; font-size: 14px; margin-bottom: 20px; }
 
-        /* الأزرار الملونة */
+        /* الأزرار */
         .btn-order { border: none; padding: 12px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; color: white; font-size: 16px; transition: 0.3s; }
         
-        /* تنسيقات فودافون */
-        .vodafone-section { border-top: 6px solid var(--vodafone); }
-        .vodafone-section .price { color: var(--vodafone); }
         .vodafone-btn { background-color: var(--vodafone); }
-        .vodafone-btn:hover { background-color: #c40000; }
-        
-        /* تنسيقات اتصالات */
-        .etisalat-section { border-top: 6px solid var(--etisalat); }
-        .etisalat-section .price { color: var(--etisalat); }
         .etisalat-btn { background-color: var(--etisalat); }
-        .etisalat-btn:hover { background-color: #5d7e05; }
-
-        /* تنسيقات أورنج */
-        .orange-section { border-top: 6px solid var(--orange); }
-        .orange-section .price { color: var(--orange); }
         .orange-btn { background-color: var(--orange); }
-        .orange-btn:hover { background-color: #e65c00; }
-
-        /* تنسيقات وي */
-        .we-section { border-top: 6px solid var(--we); }
-        .we-section .price { color: var(--we); }
         .we-btn { background-color: var(--we); }
-        .we-btn:hover { background-color: #4a2475; }
 
         /* النافذة المنبثقة (Modal) */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
@@ -65,8 +49,7 @@
         .cash-alert { background: #fff3cd; border: 1px dashed #e67e22; padding: 15px; border-radius: 12px; margin: 20px 0; font-weight: bold; color: #d35400; font-size: 18px; }
         input[type="text"], input[type="file"] { width: 100%; padding: 14px; margin: 12px 0; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 15px; background: #fafafa; }
         .submit-order { background: #27ae60; color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 18px; margin-top: 10px; }
-        .close-modal { position: absolute; top: 15px; left: 20px; font-size: 24px; cursor: pointer; color: #bbb; transition: 0.3s; }
-        .close-modal:hover { color: #333; }
+        .close-modal { position: absolute; top: 15px; left: 20px; font-size: 24px; cursor: pointer; color: #bbb; }
     </style>
 </head>
 <body>
@@ -74,104 +57,96 @@
 <div class="container">
     <h1 class="header-title">•» أقوى عروض النت والوحدات «•</h1>
 
-    <div class="network-section vodafone-section">
-        <div class="network-header">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Vodafone_icon.svg/1024px-Vodafone_icon.svg.png" alt="لوجو فودافون">
-        </div>
+    <div class="network-section">
+        <div class="network-name voda-text">عروض فودافون</div>
         <div class="offers-grid">
-            <div class="offer-card">
+            <div class="offer-card" style="border-top: 5px solid var(--vodafone);">
                 <h3>40 جيجا نت + 7500 وحدة</h3>
-                <div class="price">125 جنيه</div>
+                <div class="price" style="color: var(--vodafone);">125 جنيه</div>
                 <div class="duration">صلاحية 3 شهور</div>
                 <button class="btn-order vodafone-btn" onclick="openModal('فودافون: 40 جيجا')">شحن الباقة</button>
             </div>
-            <div class="offer-card">
+            <div class="offer-card" style="border-top: 5px solid var(--vodafone);">
                 <h3>32 جيجا + 9000 وحدة</h3>
-                <div class="price">105 جنيه</div>
+                <div class="price" style="color: var(--vodafone);">105 جنيه</div>
                 <div class="duration">صلاحية شهرين</div>
                 <button class="btn-order vodafone-btn" onclick="openModal('فودافون: 32 جيجا')">شحن الباقة</button>
             </div>
-            <div class="offer-card">
+            <div class="offer-card" style="border-top: 5px solid var(--vodafone);">
                 <h3>17 جيجا + 5000 وحدة</h3>
-                <div class="price">80 جنيه</div>
+                <div class="price" style="color: var(--vodafone);">80 جنيه</div>
                 <div class="duration">صلاحية شهر واحد</div>
                 <button class="btn-order vodafone-btn" onclick="openModal('فودافون: 17 جيجا')">شحن الباقة</button>
             </div>
         </div>
     </div>
 
-    <div class="network-section etisalat-section">
-        <div class="network-header">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Etisalat_Logo.svg/1280px-Etisalat_Logo.svg.png" alt="لوجو اتصالات">
-        </div>
+    <div class="network-section">
+        <div class="network-name eti-text">عروض اتصالات</div>
         <div class="offers-grid">
-            <div class="offer-card">
+            <div class="offer-card" style="border-top: 5px solid var(--etisalat);">
                 <h3>70 جيجا + 9000 وحدة</h3>
-                <div class="price">150 جنيه</div>
+                <div class="price" style="color: var(--etisalat);">150 جنيه</div>
                 <div class="duration">صلاحية 3 شهور</div>
                 <button class="btn-order etisalat-btn" onclick="openModal('اتصالات: 70 جيجا')">شحن الباقة</button>
             </div>
-            <div class="offer-card">
+            <div class="offer-card" style="border-top: 5px solid var(--etisalat);">
                 <h3>50 جيجا + 6500 وحدة</h3>
-                <div class="price">115 جنيه</div>
+                <div class="price" style="color: var(--etisalat);">115 جنيه</div>
                 <div class="duration">صلاحية 3 شهور</div>
                 <button class="btn-order etisalat-btn" onclick="openModal('اتصالات: 50 جيجا')">شحن الباقة</button>
             </div>
-            <div class="offer-card">
+            <div class="offer-card" style="border-top: 5px solid var(--etisalat);">
                 <h3>25 جيجا + 4300 وحدة</h3>
-                <div class="price">85 جنيه</div>
+                <div class="price" style="color: var(--etisalat);">85 جنيه</div>
                 <div class="duration">صلاحية شهر واحد</div>
                 <button class="btn-order etisalat-btn" onclick="openModal('اتصالات: 25 جيجا')">شحن الباقة</button>
             </div>
         </div>
     </div>
 
-    <div class="network-section orange-section">
-        <div class="network-header">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Orange_logo.svg/1024px-Orange_logo.svg.png" alt="لوجو أورنج">
-        </div>
+    <div class="network-section">
+        <div class="network-name ora-text">عروض أورنج</div>
         <div class="offers-grid">
-            <div class="offer-card">
+            <div class="offer-card" style="border-top: 5px solid var(--orange);">
                 <h3>70 جيجا نت و 4500 وحدة</h3>
-                <div class="price">140 جنيه</div>
+                <div class="price" style="color: var(--orange);">140 جنيه</div>
                 <div class="duration">صلاحية 3 شهور</div>
                 <button class="btn-order orange-btn" onclick="openModal('أورنج: 70 جيجا')">شحن الباقة</button>
             </div>
-            <div class="offer-card">
+            <div class="offer-card" style="border-top: 5px solid var(--orange);">
                 <h3>50 جيجا نت و 4600 وحدة</h3>
-                <div class="price">120 جنيه</div>
+                <div class="price" style="color: var(--orange);">120 جنيه</div>
                 <div class="duration">صلاحية 3 شهور</div>
                 <button class="btn-order orange-btn" onclick="openModal('أورنج: 50 جيجا')">شحن الباقة</button>
             </div>
-            <div class="offer-card">
+            <div class="offer-card" style="border-top: 5px solid var(--orange);">
                 <h3>35 جيجا نت و 5000 وحدة</h3>
-                <div class="price">95 جنيه</div>
+                <div class="price" style="color: var(--orange);">95 جنيه</div>
                 <div class="duration">صلاحية 3 شهور</div>
                 <button class="btn-order orange-btn" onclick="openModal('أورنج: 35 جيجا')">شحن الباقة</button>
             </div>
         </div>
     </div>
 
-    <div class="network-section we-section">
-        <div class="network-header">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Telecom_Egypt_Logo.svg/1200px-Telecom_Egypt_Logo.svg.png" alt="لوجو وي">
-        </div>
+    <div class="network-section">
+        <div class="network-name we-text">عروض وي (WE)</div>
         <div class="offers-grid">
-            <div class="offer-card">
+            <div class="offer-card" style="border-top: 5px solid var(--we);">
                 <h3>65 جيجا نت و 5500 وحدة</h3>
-                <div class="price">190 جنيه</div>
+                <div class="price" style="color: var(--we);">190 جنيه</div>
                 <div class="duration">صلاحية 3 شهور</div>
                 <button class="btn-order we-btn" onclick="openModal('وي: 65 جيجا')">شحن الباقة</button>
             </div>
-            <div class="offer-card">
+            <div class="offer-card" style="border-top: 5px solid var(--we);">
                 <h3>47 جيجا نت و 4900 وحدة</h3>
-                <div class="price">120 جنيه</div>
+                <div class="price" style="color: var(--we);">120 جنيه</div>
                 <div class="duration">صلاحية 3 شهور</div>
                 <button class="btn-order we-btn" onclick="openModal('وي: 47 جيجا')">شحن الباقة</button>
             </div>
-            <div class="offer-card">
+            <div class="offer-card" style="border-top: 5px solid var(--we);">
                 <h3>16 جيجا نت و 3500 وحدة</h3>
-                <div class="price">85 جنيه</div>
+                <div class="price" style="color: var(--we);">85 جنيه</div>
                 <div class="duration">صلاحية شهرين</div>
                 <button class="btn-order we-btn" onclick="openModal('وي: 16 جيجا')">شحن الباقة</button>
             </div>
@@ -182,7 +157,7 @@
 <div id="orderModal" class="modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal()">&times;</span>
-        <h2 id="selectedPackage" style="color: #333;">تفاصيل الشحن</h2>
+        <h2 id="selectedPackage">تفاصيل الشحن</h2>
         
         <div class="cash-alert">
             حول المبلغ إلى فودافون كاش: <br>
@@ -190,36 +165,27 @@
         </div>
 
         <form id="paymentForm">
-            <input type="text" placeholder="رقم الموبايل المراد شحنه" required>
-            <input type="text" placeholder="رقم المحفظة الذي حولت منه" required>
-            <label style="display:block; text-align:right; margin-bottom:5px; font-size:14px; font-weight:bold;">صورة إيصال التحويل (Screenshot):</label>
+            <input type="text" placeholder="رقم الموبايل المراد تفعيله" required>
+            <input type="text" placeholder="رقم الكاش اللي بعت منه" required>
+            <label style="display:block; text-align:right; margin-bottom:5px; font-size:14px; font-weight:bold;">صورة إيصال التحويل (سكرين):</label>
             <input type="file" accept="image/*" required>
-            <button type="submit" class="submit-order">إرسال الطلب للتفعيل</button>
+            <button type="submit" class="submit-order">تأكيد الطلب</button>
         </form>
     </div>
 </div>
 
 <script>
     function openModal(packageName) {
-        document.getElementById('selectedPackage').innerText = "باقة " + packageName;
+        document.getElementById('selectedPackage').innerText = "شحن " + packageName;
         document.getElementById('orderModal').style.display = "block";
     }
-
     function closeModal() {
         document.getElementById('orderModal').style.display = "none";
     }
-
     window.onclick = function(event) {
-        let modal = document.getElementById('orderModal');
-        if (event.target == modal) {
+        if (event.target == document.getElementById('orderModal')) {
             closeModal();
         }
-    }
-
-    document.getElementById('paymentForm').onsubmit = function(e) {
-        e.preventDefault();
-        alert("يا بطل! تم استلام بياناتك بنجاح، جاري مراجعة التحويل وتفعيل الباقة لك.");
-        closeModal();
     }
 </script>
 
