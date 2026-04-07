@@ -3,150 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الباشا ستور | خدمات الشحن الرقمي</title>
+    <title>الباشا ستور | عروض الشحن الحصرية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;800;950&display=swap" rel="stylesheet">
     <style>
         :root {
             --voda: #e60000; --eti: #719906; --ora: #ff6600; --we: #5d2d91;
             --glass: rgba(255, 255, 255, 0.95);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-
         body {
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #1a1a2e);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             min-height: 100vh;
             padding: 20px;
             color: #2d3436;
         }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         .main-wrapper { max-width: 1200px; margin: auto; }
-
-        /* الهيدر الزجاجي */
         header {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
             border-radius: 30px;
             padding: 40px;
             text-align: center;
-            margin-bottom: 40px;
-            border: 1px solid rgba(255,255,255,0.3);
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
             color: white;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
-
-        header h1 { font-size: clamp(1.5rem, 5vw, 3rem); font-weight: 950; text-shadow: 2px 2px 10px rgba(0,0,0,0.2); }
-
-        /* أزرار الشركات - نظام متطور */
+        header h1 { font-size: 2.5rem; font-weight: 950; margin-bottom: 10px; }
         .nav-tabs {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
             margin-bottom: 40px;
         }
-
         .tab-btn {
-            background: var(--glass);
-            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 15px;
             border-radius: 20px;
             cursor: pointer;
-            border: none;
+            border: 1px solid rgba(255,255,255,0.2);
             font-weight: 800;
-            font-size: 1.1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            text-align: center;
         }
-
-        .tab-btn i { font-size: 24px; margin-bottom: 10px; }
-        .tab-btn.active { transform: scale(1.05); color: white; box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-
+        .tab-btn.active { transform: scale(1.05); border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
         .tab-btn[data-target="voda"].active { background: var(--voda); }
         .tab-btn[data-target="eti"].active { background: var(--eti); }
         .tab-btn[data-target="ora"].active { background: var(--ora); }
         .tab-btn[data-target="we"].active { background: var(--we); }
 
-        /* الكروت */
-        .content-section { display: none; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; animation: slideUp 0.6s ease; }
+        .content-section { display: none; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; animation: slideUp 0.5s ease; }
         .content-section.active { display: grid; }
-
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         .card {
             background: var(--glass);
-            border-radius: 30px;
-            padding: 35px;
-            position: relative;
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
             border: 1px solid rgba(255,255,255,0.5);
-            overflow: hidden;
+            position: relative;
         }
-
-        .card::before {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
-            opacity: 0; transition: 0.5s;
-        }
-
-        .card:hover::before { opacity: 1; transform: scale(1.1); }
-        .card:hover { transform: translateY(-15px); }
-
-        .price-tag { font-size: 45px; font-weight: 900; margin: 20px 0; display: block; }
-        .features { list-style: none; margin-bottom: 30px; }
-        .features li { margin: 12px 0; font-weight: 500; color: #555; display: flex; align-items: center; }
-        .features li::before { content: '✦'; margin-left: 10px; color: inherit; }
-
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .price-tag { font-size: 35px; font-weight: 950; display: block; margin: 15px 0; }
+        .card h3 { font-size: 1.3rem; height: 60px; display: flex; align-items: center; justify-content: center; }
+        .card p { color: #666; font-weight: 600; margin-bottom: 20px; }
         .btn-main {
-            width: 100%; padding: 18px; border-radius: 18px; border: none;
-            color: white; font-weight: 800; font-size: 1.2rem; cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            width: 100%; padding: 15px; border-radius: 15px; border: none;
+            color: white; font-weight: 800; font-size: 1.1rem; cursor: pointer;
         }
 
-        /* المودال الاحترافي */
+        /* المودال */
         .modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); backdrop-filter: blur(10px);
-            display: none; align-items: center; justify-content: center; z-index: 9999;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
+            display: none; align-items: center; justify-content: center; z-index: 10000;
         }
-
         .modal-body {
-            background: white; width: 95%; max-width: 500px; padding: 40px;
-            border-radius: 40px; position: relative; animation: zoomIn 0.3s;
+            background: white; width: 90%; max-width: 450px; padding: 30px;
+            border-radius: 30px; position: relative; text-align: center;
         }
-
-        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
-        .cash-number-box {
-            background: #f1f2f6; padding: 25px; border-radius: 25px;
-            margin: 20px 0; border: 3px dashed #dfe4ea; position: relative;
+        .cash-box {
+            background: #fff3cd; padding: 20px; border-radius: 20px;
+            margin: 20px 0; border: 2px dashed #f39c12;
         }
-
-        .input-group { margin-bottom: 20px; text-align: right; }
-        .input-group label { display: block; margin-bottom: 10px; font-weight: 700; color: #2f3542; }
-        .input-group input {
-            width: 100%; padding: 15px; border: 2px solid #f1f2f6;
-            border-radius: 15px; font-size: 1rem; outline: none;
-        }
-
-        .input-group input:focus { border-color: #2ed573; background: #fafff1; }
-
-        .close-btn { position: absolute; top: 25px; left: 25px; font-size: 30px; cursor: pointer; color: #ced4da; }
+        .input-group { margin-bottom: 15px; text-align: right; }
+        .input-group label { display: block; margin-bottom: 5px; font-weight: 700; }
+        .input-group input { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 12px; outline: none; }
+        .close-btn { position: absolute; top: 20px; left: 20px; font-size: 25px; cursor: pointer; color: #ccc; }
     </style>
 </head>
 <body>
 
     <div class="main-wrapper">
         <header>
-            <h1>الباشا بريميوم 💎</h1>
-            <p>منصة الشحن الرقمي الأسرع في مصر</p>
+            <h1>•» مـتـجـر الـبـاشـا «•</h1>
+            <p>جميع عروض النت والوحدات في مكان واحد</p>
         </header>
 
         <nav class="nav-tabs">
@@ -157,103 +111,136 @@
         </nav>
 
         <div id="voda" class="content-section active">
-            <div class="card" style="border-top: 10px solid var(--voda);">
-                <span style="color: var(--voda); font-weight: 900;">باقة التوفير</span>
-                <span class="price-tag" style="color: var(--voda);">125 <small style="font-size: 20px;">ج.م</small></span>
-                <ul class="features">
-                    <li>40 جيجا بايت إنترنت</li>
-                    <li>7500 وحدة لكل الشبكات</li>
-                    <li>صلاحية 3 شهور</li>
-                </ul>
-                <button class="btn-main" style="background: var(--voda);" onclick="showModal('فودافون 40 جيجا')">اطلب الآن</button>
+            <div class="card" style="border-top: 8px solid var(--voda);">
+                <h3>40 جيجا نت + 7500 وحدة</h3>
+                <span class="price-tag" style="color: var(--voda);">125 ج.م</span>
+                <p>صلاحية لمدة 3 شهور</p>
+                <button class="btn-main" style="background: var(--voda);" onclick="openModal('فودافون 40 جيجا')">شحن الباقة</button>
             </div>
-            <div class="card" style="border-top: 10px solid var(--voda);">
-                <span style="color: var(--voda); font-weight: 900;">باقة الاستخدام المتوسط</span>
-                <span class="price-tag" style="color: var(--voda);">105 <small style="font-size: 20px;">ج.م</small></span>
-                <ul class="features">
-                    <li>32 جيجا بايت إنترنت</li>
-                    <li>9000 وحدة لكل الشبكات</li>
-                    <li>صلاحية شهرين</li>
-                </ul>
-                <button class="btn-main" style="background: var(--voda);" onclick="showModal('فودافون 32 جيجا')">اطلب الآن</button>
+            <div class="card" style="border-top: 8px solid var(--voda);">
+                <h3>32 جيجا نت + 9000 وحدة</h3>
+                <span class="price-tag" style="color: var(--voda);">105 ج.م</span>
+                <p>صلاحية لمدة شهرين</p>
+                <button class="btn-main" style="background: var(--voda);" onclick="openModal('فودافون 32 جيجا')">شحن الباقة</button>
+            </div>
+            <div class="card" style="border-top: 8px solid var(--voda);">
+                <h3>17 جيجا نت + 5000 وحدة</h3>
+                <span class="price-tag" style="color: var(--voda);">80 ج.م</span>
+                <p>صلاحية لمدة شهر</p>
+                <button class="btn-main" style="background: var(--voda);" onclick="openModal('فودافون 17 جيجا')">شحن الباقة</button>
             </div>
         </div>
 
         <div id="eti" class="content-section">
-            <div class="card" style="border-top: 10px solid var(--eti);">
-                <span style="color: var(--eti); font-weight: 900;">باقة التنين</span>
-                <span class="price-tag" style="color: var(--eti);">150 <small style="font-size: 20px;">ج.م</small></span>
-                <ul class="features">
-                    <li>70 جيجا بايت إنترنت</li>
-                    <li>9000 وحدة لكل الشبكات</li>
-                    <li>صلاحية 3 شهور</li>
-                </ul>
-                <button class="btn-main" style="background: var(--eti);" onclick="showModal('اتصالات 70 جيجا')">اطلب الآن</button>
+            <div class="card" style="border-top: 8px solid var(--eti);">
+                <h3>70 جيجا نت + 9000 وحدة</h3>
+                <span class="price-tag" style="color: var(--eti);">150 ج.م</span>
+                <p>صلاحية لمدة 3 شهور</p>
+                <button class="btn-main" style="background: var(--eti);" onclick="openModal('اتصالات 70 جيجا')">شحن الباقة</button>
+            </div>
+            <div class="card" style="border-top: 8px solid var(--eti);">
+                <h3>50 جيجا نت + 6500 وحدة</h3>
+                <span class="price-tag" style="color: var(--eti);">115 ج.م</span>
+                <p>صلاحية لمدة 3 شهور</p>
+                <button class="btn-main" style="background: var(--eti);" onclick="openModal('اتصالات 50 جيجا')">شحن الباقة</button>
+            </div>
+            <div class="card" style="border-top: 8px solid var(--eti);">
+                <h3>25 جيجا نت + 4300 وحدة</h3>
+                <span class="price-tag" style="color: var(--eti);">85 ج.م</span>
+                <p>صلاحية لمدة شهر</p>
+                <button class="btn-main" style="background: var(--eti);" onclick="openModal('اتصالات 25 جيجا')">شحن الباقة</button>
             </div>
         </div>
 
+        <div id="ora" class="content-section">
+            <div class="card" style="border-top: 8px solid var(--ora);">
+                <h3>70 جيجا نت + 4500 وحدة</h3>
+                <span class="price-tag" style="color: var(--ora);">140 ج.م</span>
+                <p>صلاحية لمدة 3 شهور</p>
+                <button class="btn-main" style="background: var(--ora);" onclick="openModal('أورنج 70 جيجا')">شحن الباقة</button>
+            </div>
+            <div class="card" style="border-top: 8px solid var(--ora);">
+                <h3>50 جيجا نت + 4600 وحدة</h3>
+                <span class="price-tag" style="color: var(--ora);">120 ج.م</span>
+                <p>صلاحية لمدة 3 شهور</p>
+                <button class="btn-main" style="background: var(--ora);" onclick="openModal('أورنج 50 جيجا')">شحن الباقة</button>
+            </div>
+            <div class="card" style="border-top: 8px solid var(--ora);">
+                <h3>35 جيجا نت + 5000 وحدة</h3>
+                <span class="price-tag" style="color: var(--ora);">95 ج.م</span>
+                <p>صلاحية لمدة 3 شهور</p>
+                <button class="btn-main" style="background: var(--ora);" onclick="openModal('أورنج 35 جيجا')">شحن الباقة</button>
+            </div>
         </div>
+
+        <div id="we" class="content-section">
+            <div class="card" style="border-top: 8px solid var(--we);">
+                <h3>65 جيجا نت + 5500 وحدة</h3>
+                <span class="price-tag" style="color: var(--we);">190 ج.م</span>
+                <p>صلاحية لمدة 3 شهور</p>
+                <button class="btn-main" style="background: var(--we);" onclick="openModal('وي 65 جيجا')">شحن الباقة</button>
+            </div>
+            <div class="card" style="border-top: 8px solid var(--we);">
+                <h3>47 جيجا نت + 4900 وحدة</h3>
+                <span class="price-tag" style="color: var(--we);">120 ج.م</span>
+                <p>صلاحية لمدة 3 شهور</p>
+                <button class="btn-main" style="background: var(--we);" onclick="openModal('وي 47 جيجا')">شحن الباقة</button>
+            </div>
+            <div class="card" style="border-top: 8px solid var(--we);">
+                <h3>16 جيجا نت + 3500 وحدة</h3>
+                <span class="price-tag" style="color: var(--we);">85 ج.م</span>
+                <p>صلاحية لمدة شهرين</p>
+                <button class="btn-main" style="background: var(--we);" onclick="openModal('وي 16 جيجا')">شحن الباقة</button>
+            </div>
+        </div>
+    </div>
 
     <div class="modal" id="orderModal">
         <div class="modal-body">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="pkgTitle" style="margin-bottom: 10px;">شحن الباقة</h2>
-            <div class="cash-number-box">
-                <p style="font-size: 14px; color: #666;">رقم التحويل (فودافون كاش):</p>
-                <h3 id="cashNum" style="font-size: 28px; color: var(--voda);">01023369476</h3>
-                <button onclick="copyNum()" style="background: #333; color: white; border: none; padding: 5px 15px; border-radius: 8px; margin-top: 10px; cursor: pointer;">نسخ الرقم</button>
+            <h2 id="modalTitle">تأكيد الطلب</h2>
+            <div class="cash-box">
+                <p>رقم فودافون كاش للتحويل:</p>
+                <strong style="font-size: 24px;">01023369476</strong>
             </div>
-            
-            <form id="mainForm">
+            <form id="payForm">
                 <div class="input-group">
-                    <label>الرقم المطلوب شحنه</label>
-                    <input type="text" placeholder="01xxxxxxxxx" required>
+                    <label>رقم تفعيل الباقة:</label>
+                    <input type="text" placeholder="الرقم المطلوب شحنه" required>
                 </div>
                 <div class="input-group">
-                    <label>الرقم المحول منه</label>
-                    <input type="text" placeholder="01xxxxxxxxx" required>
+                    <label>الرقم المحول منه:</label>
+                    <input type="text" placeholder="الرقم اللي بعت منه كاش" required>
                 </div>
                 <div class="input-group">
-                    <label>صورة التحويل</label>
+                    <label>اسكرين شوت التحويل:</label>
                     <input type="file" required>
                 </div>
-                <button type="submit" class="btn-main" style="background: #2ed573;">تأكيد الشحن فوراً</button>
+                <button type="submit" class="btn-main" style="background: #27ae60;">إرسال الطلب</button>
             </form>
         </div>
     </div>
 
     <script>
-        // نظام التبويبات
         const tabs = document.querySelectorAll('.tab-btn');
         const sections = document.querySelectorAll('.content-section');
-
-        tabs.forEach(btn => {
-            btn.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
+        tabs.forEach(t => {
+            t.addEventListener('click', () => {
+                tabs.forEach(btn => btn.classList.remove('active'));
                 sections.forEach(s => s.classList.remove('active'));
-                btn.classList.add('active');
-                document.getElementById(btn.dataset.target).classList.add('active');
+                t.classList.add('active');
+                document.getElementById(t.dataset.target).classList.add('active');
             });
         });
 
-        // المودال
-        function showModal(title) {
-            document.getElementById('pkgTitle').innerText = title;
+        function openModal(title) {
+            document.getElementById('modalTitle').innerText = "شحن " + title;
             document.getElementById('orderModal').style.display = 'flex';
         }
-        function closeModal() {
-            document.getElementById('orderModal').style.display = 'none';
-        }
-        function copyNum() {
-            const num = document.getElementById('cashNum').innerText;
-            navigator.clipboard.writeText(num);
-            alert("تم نسخ الرقم: " + num);
-        }
-
-        // التعامل مع الإرسال
-        document.getElementById('mainForm').onsubmit = (e) => {
+        function closeModal() { document.getElementById('orderModal').style.display = 'none'; }
+        document.getElementById('payForm').onsubmit = (e) => {
             e.preventDefault();
-            alert("✅ تم إرسال طلبك بنجاح! جاري المراجعة وتفعيل الباقة خلال دقائق.");
+            alert("تم إرسال طلبك بنجاح! سيتم التفعيل فور مراجعة التحويل.");
             closeModal();
         }
     </script>
