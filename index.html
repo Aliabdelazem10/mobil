@@ -3,92 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عروض الشبكات</title>
+    <title>متجر عروض الشبكات</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
-        .container { max-width: 1200px; margin: auto; }
-        .network-section { margin-bottom: 50px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        :root {
+            --vodafone: #e60000;
+            --etisalat: #719906;
+            --orange: #ff6600;
+            --we: #5d2d91;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; }
+        .header-title { text-align: center; color: #333; margin-bottom: 30px; }
         
-        /* ترويسة الشبكة */
-        .network-header { text-align: center; margin-bottom: 30px; }
-        .network-header img { max-width: 150px; height: auto; }
+        /* تصميم الأقسام */
+        .network-section { background: white; border-radius: 15px; padding: 20px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .network-logo { text-align: center; margin-bottom: 20px; }
+        .network-logo img { height: 60px; object-fit: contain; }
         
         /* شبكة العروض */
-        .offers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .offer-card { border: 2px solid #eee; border-radius: 12px; padding: 20px; text-align: center; transition: 0.3s; }
-        .offer-card:hover { transform: translateY(-5px); }
+        .offers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .offer-card { border: 1px solid #eee; border-radius: 10px; padding: 15px; text-align: center; transition: 0.3s; }
+        .offer-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .offer-card h3 { margin: 10px 0; font-size: 18px; }
+        .offer-card .price { font-size: 22px; font-weight: bold; margin: 10px 0; color: #333; }
+        .offer-card .duration { color: #666; font-size: 14px; margin-bottom: 15px; }
 
-        /* ألوان الشركات */
-        .vodafone { border-top: 8px solid #e60000; }
-        .vodafone button { background-color: #e60000; color: white; }
+        /* الأزرار والألوان */
+        .btn-order { border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; color: white; transition: 0.3s; }
         
-        .orange { border-top: 8px solid #ff6600; }
-        .orange button { background-color: #ff6600; color: white; }
-
-        .etisalat { border-top: 8px solid #719906; }
-        .etisalat button { background-color: #719906; color: white; }
-
-        .we { border-top: 8px solid #5d2d91; }
-        .we button { background-color: #5d2d91; color: white; }
-
-        .offer-card h3 { margin: 10px 0; color: #333; }
-        .price { font-size: 24px; font-weight: bold; color: #000; margin: 10px 0; }
+        .vodafone-border { border-top: 5px solid var(--vodafone); }
+        .vodafone-btn { background-color: var(--vodafone); }
         
-        button { border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; width: 100%; }
-        
-        /* تنسيق الفورم (النافذة) */
-        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
-        .modal-content { background: white; margin: 10% auto; padding: 30px; width: 90%; max-width: 400px; border-radius: 10px; position: relative; }
-        .modal-content input, .modal-content button { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        .etisalat-border { border-top: 5px solid var(--etisalat); }
+        .etisalat-btn { background-color: var(--etisalat); }
+
+        .orange-border { border-top: 5px solid var(--orange); }
+        .orange-btn { background-color: var(--orange); }
+
+        .we-border { border-top: 5px solid var(--we); }
+        .we-btn { background-color: var(--we); }
+
+        /* النافذة المنبثقة (Popup) */
+        .modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); }
+        .modal-content { background: white; margin: 10% auto; padding: 25px; width: 90%; max-width: 400px; border-radius: 12px; position: relative; text-align: center; }
+        .cash-box { background: #fff3cd; border: 1px dashed #856404; padding: 10px; border-radius: 8px; margin: 15px 0; font-weight: bold; color: #856404; }
+        input[type="text"], input[type="file"] { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .submit-order { background: #28a745; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; }
+        .close-modal { position: absolute; top: 10px; left: 15px; font-size: 20px; cursor: pointer; color: #999; }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <h1 class="header-title">•» عروض النت والوحدات «•</h1>
 
     <div class="network-section">
-        <div class="network-header">
+        <div class="network-logo">
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Vodafone_icon.svg" alt="Vodafone">
-            <h2>عروض فودافون</h2>
         </div>
         <div class="offers-grid">
-            <div class="offer-card vodafone">
-                <h3>باقة إكستريم 100</h3>
-                <div class="price">100 ج.م</div>
-                <p>10,000 ميجا بايت</p>
-                <button onclick="openModal('باقة فودافون 100')">شحن الباقة</button>
+            <div class="offer-card vodafone-border">
+                <h3>40 جيجا + 7500 وحدة</h3>
+                <div class="price">125 جنيه</div>
+                <div class="duration">المدة: 3 شهور</div>
+                <button class="btn-order vodafone-btn" onclick="openModal('فودافون: 40 جيجا')">شحن الباقة</button>
             </div>
+            <div class="offer-card vodafone-border">
+                <h3>32 جيجا + 9000 وحدة</h3>
+                <div class="price">105 جنيه</div>
+                <div class="duration">المدة: شهرين</div>
+                <button class="btn-order vodafone-btn" onclick="openModal('فودافون: 32 جيجا')">شحن الباقة</button>
             </div>
+            <div class="offer-card vodafone-border">
+                <h3>17 جيجا + 5000 وحدة</h3>
+                <div class="price">80 جنيه</div>
+                <div class="duration">المدة: شهر واحد</div>
+                <button class="btn-order vodafone-btn" onclick="openModal('فودافون: 17 جيجا')">شحن الباقة</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="network-section">
+        <div class="network-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Etisalat_Logo.svg" alt="Etisalat">
+        </div>
+        <div class="offers-grid">
+            <div class="offer-card etisalat-border">
+                <h3>70 جيجا + 9000 وحدة</h3>
+                <div class="price">150 جنيه</div>
+                <div class="duration">المدة: 3 شهور</div>
+                <button class="btn-order etisalat-btn" onclick="openModal('اتصالات: 70 جيجا')">شحن الباقة</button>
+            </div>
+            <div class="offer-card etisalat-border">
+                <h3>50 جيجا + 6500 وحدة</h3>
+                <div class="price">115 جنيه</div>
+                <div class="duration">المدة: 3 شهور</div>
+                <button class="btn-order etisalat-btn" onclick="openModal('اتصالات: 50 جيجا')">شحن الباقة</button>
+            </div>
+            <div class="offer-card etisalat-border">
+                <h3>25 جيجا + 4300 وحدة</h3>
+                <div class="price">85 جنيه</div>
+                <div class="duration">المدة: شهر واحد</div>
+                <button class="btn-order etisalat-btn" onclick="openModal('اتصالات: 25 جيجا')">شحن الباقة</button>
+            </div>
+        </div>
     </div>
 
     <div class="network-section">
-        <div class="network-header">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Etisalat_Logo.svg" alt="Etisalat">
-            <h2>عروض اتصالات</h2>
+        <div class="network-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Orange_logo.svg" alt="Orange">
         </div>
         <div class="offers-grid">
-            <div class="offer-card etisalat">
-                <h3>حكاية 50</h3>
-                <div class="price">50 ج.م</div>
-                <p>1500 دقيقة لكل الشبكات</p>
-                <button onclick="openModal('حكاية 50')">شحن الباقة</button>
+            <div class="offer-card orange-border">
+                <h3>70 جيجا + 4500 وحدة</h3>
+                <div class="price">140 جنيه</div>
+                <div class="duration">المدة: 3 شهور</div>
+                <button class="btn-order orange-btn" onclick="openModal('أورنج: 70 جيجا')">شحن الباقة</button>
+            </div>
+            <div class="offer-card orange-border">
+                <h3>50 جيجا + 4600 وحدة</h3>
+                <div class="price">120 جنيه</div>
+                <div class="duration">المدة: 3 شهور</div>
+                <button class="btn-order orange-btn" onclick="openModal('أورنج: 50 جيجا')">شحن الباقة</button>
+            </div>
+            <div class="offer-card orange-border">
+                <h3>35 جيجا + 5000 وحدة</h3>
+                <div class="price">95 جنيه</div>
+                <div class="duration">المدة: 3 شهور</div>
+                <button class="btn-order orange-btn" onclick="openModal('أورنج: 35 جيجا')">شحن الباقة</button>
             </div>
         </div>
     </div>
 
+    <div class="network-section">
+        <div class="network-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Telecom_Egypt_Logo.svg" alt="WE">
+        </div>
+        <div class="offers-grid">
+            <div class="offer-card we-border">
+                <h3>65 جيجا + 5500 وحدة</h3>
+                <div class="price">190 جنيه</div>
+                <div class="duration">المدة: 3 شهور</div>
+                <button class="btn-order we-btn" onclick="openModal('وي: 65 جيجا')">شحن الباقة</button>
+            </div>
+            <div class="offer-card we-border">
+                <h3>47 جيجا + 4900 وحدة</h3>
+                <div class="price">120 جنيه</div>
+                <div class="duration">المدة: 3 شهور</div>
+                <button class="btn-order we-btn" onclick="openModal('وي: 47 جيجا')">شحن الباقة</button>
+            </div>
+            <div class="offer-card we-border">
+                <h3>16 جيجا + 3500 وحدة</h3>
+                <div class="price">85 جنيه</div>
+                <div class="duration">المدة: شهرين</div>
+                <button class="btn-order we-btn" onclick="openModal('وي: 16 جيجا')">شحن الباقة</button>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div id="paymentModal" class="modal">
+<div id="orderModal" class="modal">
     <div class="modal-content">
-        <h3 id="selectedPackage">شحن الباقة</h3>
-        <p style="color: red; font-weight: bold;">رقم الكاش للتحويل: 010XXXXXXXX</p>
-        <form id="orderForm">
-            <input type="text" placeholder="رقم الموبايل المراد تفعيل الباقة عليه" required>
-            <input type="text" placeholder="الرقم الذي قمت بالتحويل منه" required>
-            <label>ارفق صورة التحويل (سكرين شوت):</label>
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h2 id="selectedPackage">شحن باقة</h2>
+        <div class="cash-box">
+            رقم فودافون كاش للتحويل: <br>
+            <span style="font-size: 20px;">01023369476</span>
+        </div>
+        <form id="paymentForm">
+            <input type="text" placeholder="رقم الموبايل (المراد شحن الباقة له)" required>
+            <input type="text" placeholder="رقم فودافون كاش (اللي حولت منه)" required>
+            <label style="display:block; text-align:right; font-size:13px; color:#666;">ارفق اسكرين شوت التحويل:</label>
             <input type="file" accept="image/*" required>
-            <button type="submit" style="background: #28a745; color: white;">تأكيد الطلب</button>
-            <button type="button" onclick="closeModal()" style="background: #ccc;">إلغاء</button>
+            <button type="submit" class="submit-order">تأكيد وإرسال الطلب</button>
         </form>
     </div>
 </div>
@@ -96,10 +183,24 @@
 <script>
     function openModal(packageName) {
         document.getElementById('selectedPackage').innerText = "شحن: " + packageName;
-        document.getElementById('paymentModal').style.display = "block";
+        document.getElementById('orderModal').style.display = "block";
     }
+
     function closeModal() {
-        document.getElementById('paymentModal').style.display = "none";
+        document.getElementById('orderModal').style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        let modal = document.getElementById('orderModal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
+    document.getElementById('paymentForm').onsubmit = function(e) {
+        e.preventDefault();
+        alert("تم استلام طلبك بنجاح! جاري المراجعة وتفعيل الباقة.");
+        closeModal();
     }
 </script>
 
