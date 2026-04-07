@@ -1,177 +1,106 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>شحن باقات الموبايل</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
-<style>
-:root {
-    --vodafone: #e60000;
-    --etisalat: #008000;
-    --orange: #ff7900;
-    --we: #5c2d91;
-    --gray: #f5f5f5;
-    --text: #333;
-}
-* {margin:0; padding:0; box-sizing:border-box; font-family:'Cairo',sans-serif;}
-body {background:var(--gray); color:var(--text);}
-.header {background:white; padding:20px; text-align:center; font-size:24px; font-weight:700; color:var(--vodafone);}
-.hero {text-align:center; padding:40px 20px;}
-.hero h1 {font-size:32px;}
-.hero p {color:#666; margin-top:8px;}
-.section {padding:20px;}
-.section-title {display:flex; align-items:center; gap:15px; margin-bottom:15px;}
-.section-title img {width:50px;}
-.cards {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px;}
-.card {padding:15px; border-radius:12px; color:white; cursor:pointer;}
-.card h3 {font-size:20px;}
-.card p {font-size:14px; margin:6px 0;}
-.card .price {font-size:22px; font-weight:800; margin:8px 0;}
-.card button {padding:10px; width:100%; border:none; border-radius:6px; font-size:16px; font-weight:700;}
-.payment {display:none; max-width:400px; margin:25px auto; background:white; padding:20px; border-radius:12px; border:1px solid #eee;}
-.payment h3 {margin-bottom:10px;}
-.payment input, .payment button {width:100%; margin:10px 0; padding:10px; border-radius:6px;}
-.copy-box {display:flex; gap:8px;}
-.success {display:none; background:#e6ffe6; padding:12px; border-radius:6px; text-align:center; font-weight:700;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عروض الشبكات</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+        .container { max-width: 1200px; margin: auto; }
+        .network-section { margin-bottom: 50px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        
+        /* ترويسة الشبكة */
+        .network-header { text-align: center; margin-bottom: 30px; }
+        .network-header img { max-width: 150px; height: auto; }
+        
+        /* شبكة العروض */
+        .offers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .offer-card { border: 2px solid #eee; border-radius: 12px; padding: 20px; text-align: center; transition: 0.3s; }
+        .offer-card:hover { transform: translateY(-5px); }
+
+        /* ألوان الشركات */
+        .vodafone { border-top: 8px solid #e60000; }
+        .vodafone button { background-color: #e60000; color: white; }
+        
+        .orange { border-top: 8px solid #ff6600; }
+        .orange button { background-color: #ff6600; color: white; }
+
+        .etisalat { border-top: 8px solid #719906; }
+        .etisalat button { background-color: #719906; color: white; }
+
+        .we { border-top: 8px solid #5d2d91; }
+        .we button { background-color: #5d2d91; color: white; }
+
+        .offer-card h3 { margin: 10px 0; color: #333; }
+        .price { font-size: 24px; font-weight: bold; color: #000; margin: 10px 0; }
+        
+        button { border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; width: 100%; }
+        
+        /* تنسيق الفورم (النافذة) */
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
+        .modal-content { background: white; margin: 10% auto; padding: 30px; width: 90%; max-width: 400px; border-radius: 10px; position: relative; }
+        .modal-content input, .modal-content button { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+    </style>
 </head>
 <body>
 
-<div class="header">خدمة شحن باقات الموبايل</div>
-<div class="hero">
-<h1>اختر باقتك الجاهزة</h1>
-<p>اضغط على "شحن الباقة" لفتح نافذة الدفع</p>
+<div class="container">
+
+    <div class="network-section">
+        <div class="network-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Vodafone_icon.svg" alt="Vodafone">
+            <h2>عروض فودافون</h2>
+        </div>
+        <div class="offers-grid">
+            <div class="offer-card vodafone">
+                <h3>باقة إكستريم 100</h3>
+                <div class="price">100 ج.م</div>
+                <p>10,000 ميجا بايت</p>
+                <button onclick="openModal('باقة فودافون 100')">شحن الباقة</button>
+            </div>
+            </div>
+    </div>
+
+    <div class="network-section">
+        <div class="network-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Etisalat_Logo.svg" alt="Etisalat">
+            <h2>عروض اتصالات</h2>
+        </div>
+        <div class="offers-grid">
+            <div class="offer-card etisalat">
+                <h3>حكاية 50</h3>
+                <div class="price">50 ج.م</div>
+                <p>1500 دقيقة لكل الشبكات</p>
+                <button onclick="openModal('حكاية 50')">شحن الباقة</button>
+            </div>
+        </div>
+    </div>
+
 </div>
 
-<!-- فودافون -->
-<div class="section">
-<div class="section-title">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Vodafone_logo.svg" alt="Vodafone Logo">
-    <span style="font-size:24px;font-weight:700;">فودافون</span>
-</div>
-<div class="cards">
-<div class="card" style="background:var(--vodafone);" onclick="order('فودافون - 40 جيجا + 7500 وحدة', '125 جنيه')">
-    <h3>40 جيجا + 7500 وحدة</h3>
-    <p>مدة 3 شهور</p>
-    <div class="price">125 جنيه</div>
-    <button style="background:white; color:var(--vodafone);">شحن الباقة</button>
-</div>
-<div class="card" style="background:var(--vodafone);" onclick="order('فودافون - 32 جيجا + 9000 وحدة', '105 جنيه')">
-    <h3>32 جيجا + 9000 وحدة</h3>
-    <p>مدة شهرين</p>
-    <div class="price">105 جنيه</div>
-    <button style="background:white; color:var(--vodafone);">شحن الباقة</button>
-</div>
-<div class="card" style="background:var(--vodafone);" onclick="order('فودافون - 17 جيجا + 5000 وحدة', '80 جنيه')">
-    <h3>17 جيجا + 5000 وحدة</h3>
-    <p>مدة شهر</p>
-    <div class="price">80 جنيه</div>
-    <button style="background:white; color:var(--vodafone);">شحن الباقة</button>
-</div>
-</div>
-</div>
-
-<!-- اتصالات -->
-<div class="section">
-<div class="section-title">
-    <img src="https://commons.wikimedia.org/wiki/File:Etisalat_eand_Logo_AR.svg" alt="Etisalat Logo">
-    <span style="font-size:24px;font-weight:700;">اتصالات</span>
-</div>
-<div class="cards">
-<div class="card" style="background:var(--etisalat);" onclick="order('اتصالات - 70 جيجا + 9000 وحدة', '150 جنيه')">
-    <h3>70 جيجا + 9000 وحدة</h3><p>مدة 3 شهور</p><div class="price">150 جنيه</div>
-    <button style="background:white; color:var(--etisalat);">شحن البقة</button>
-</div>
-<div class="card" style="background:var(--etisalat);" onclick="order('اتصالات - 50 جيجا + 6500 وحدة', '115 جنيه')">
-    <h3>50 جيجا + 6500 وحدة</h3><p>مدة 3 شهور</p><div class="price">115 جنيه</div>
-    <button style="background:white; color:var(--etisalat);">شحن البقة</button>
-</div>
-<div class="card" style="background:var(--etisalat);" onclick="order('اتصالات - 25 جيجا + 4300 وحدة', '85 جنيه')">
-    <h3>25 جيجا + 4300 وحدة</h3><p>مدة شهر</p><div class="price">85 جنيه</div>
-    <button style="background:white; color:var(--etisalat);">شحن البقة</button>
-</div>
-</div>
-</div>
-
-<!-- أورنج -->
-<div class="section">
-<div class="section-title">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Orange_logo.svg" alt="Orange Logo">
-    <span style="font-size:24px;font-weight:700;">أورنج</span>
-</div>
-<div class="cards">
-<div class="card" style="background:var(--orange);" onclick="order('أورنج - 70 جيجا + 4500 وحدة', '140 جنيه')">
-    <h3>70 جيجا + 4500 وحدة</h3><p>مدة 3 شهور</p><div class="price">140 جنيه</div>
-    <button style="background:white; color:var(--orange);">شحن البقة</button>
-</div>
-<div class="card" style="background:var(--orange);" onclick="order('أورنج - 50 جيجا + 4600 وحدة', '120 جنيه')">
-    <h3>50 جيجا + 4600 وحدة</h3><p>مدة 3 شهور</p><div class="price">120 جنيه</div>
-    <button style="background:white; color:var(--orange);">شحن البقة</button>
-</div>
-<div class="card" style="background:var(--orange);" onclick="order('أورنج - 35 جيجا + 5000 وحدة', '95 جنيه')">
-    <h3>35 جيجا + 5000 وحدة</h3><p>مدة 3 شهور</p><div class="price">95 جنيه</div>
-    <button style="background:white; color:var(--orange);">شحن البقة</button>
-</div>
-</div>
-</div>
-
-<!-- WE -->
-<div class="section">
-<div class="section-title">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/We_logo.svg" alt="WE Logo">
-    <span style="font-size:24px;font-weight:700;">WE</span>
-</div>
-<div class="cards">
-<div class="card" style="background:var(--we);" onclick="order('WE - 65 جيجا + 5500 وحدة', '190 جنيه')">
-    <h3>65 جيجا + 5500 وحدة</h3><p>مدة 3 شهور</p><div class="price">190 جنيه</div>
-    <button style="background:white; color:var(--we);">شحن البقة</button>
-</div>
-<div class="card" style="background:var(--we);" onclick="order('WE - 47 جيجا + 4900 وحدة', '120 جنيه')">
-    <h3>47 جيجا + 4900 وحدة</h3><p>مدة 3 شهور</p><div class="price">120 جنيه</div>
-    <button style="background:white; color:var(--we);">شحن البقة</button>
-</div>
-<div class="card" style="background:var(--we);" onclick="order('WE - 16 جيجا + 3500 وحدة', '85 جنيه')">
-    <h3>16 جيجا + 3500 وحدة</h3><p>مدة شهرين</p><div class="price">85 جنيه</div>
-    <button style="background:white; color:var(--we);">شحن البقة</button>
-</div>
-</div>
-</div>
-
-<div class="payment" id="payment">
-<h3 id="selectedPackage"></h3>
-
-<div class="copy-box">
-<input type="text" id="cashNumber" value="0023363476" readonly>
-<button onclick="copyNumber()">نسخ رقم فودافون كاش</button>
-</div>
-
-<input type="text" placeholder="رقم الموبايل المراد شحنه">
-<label style="font-size:14px; color:#555;">برجاء إرسال سكرين التحويل</label>
-<input type="file">
-
-<button onclick="confirmPayment()">تأكيد الشحن</button>
-
-<div class="success" id="successMsg">
-✅ تم استلام طلبك بنجاح! سيتم مراجعة التحويل وتفعيل الباقة خلال دقائق
-</div>
+<div id="paymentModal" class="modal">
+    <div class="modal-content">
+        <h3 id="selectedPackage">شحن الباقة</h3>
+        <p style="color: red; font-weight: bold;">رقم الكاش للتحويل: 010XXXXXXXX</p>
+        <form id="orderForm">
+            <input type="text" placeholder="رقم الموبايل المراد تفعيل الباقة عليه" required>
+            <input type="text" placeholder="الرقم الذي قمت بالتحويل منه" required>
+            <label>ارفق صورة التحويل (سكرين شوت):</label>
+            <input type="file" accept="image/*" required>
+            <button type="submit" style="background: #28a745; color: white;">تأكيد الطلب</button>
+            <button type="button" onclick="closeModal()" style="background: #ccc;">إلغاء</button>
+        </form>
+    </div>
 </div>
 
 <script>
-function order(name, price) {
-    document.getElementById("payment").style.display = "block";
-    document.getElementById("selectedPackage").innerText = "الباقة: " + name + " | السعر: " + price;
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-}
-function copyNumber() {
-    let txt = document.getElementById("cashNumber");
-    txt.select();
-    document.execCommand("copy");
-    alert("تم نسخ رقم فودافون كاش");
-}
-function confirmPayment() {
-    document.getElementById("successMsg").style.display = "block";
-}
+    function openModal(packageName) {
+        document.getElementById('selectedPackage').innerText = "شحن: " + packageName;
+        document.getElementById('paymentModal').style.display = "block";
+    }
+    function closeModal() {
+        document.getElementById('paymentModal').style.display = "none";
+    }
 </script>
 
 </body>
