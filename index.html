@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عروض شحن الباقات</title>
+
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f5f5f5;
+}
+
+.header {
+    background: #e60000;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.section {
+    padding: 20px;
+}
+
+.section h2 {
+    margin-bottom: 15px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    width: 260px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.price {
+    color: #e60000;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+button {
+    background: #e60000;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #cc0000;
+}
+
+.payment {
+    display: none;
+    background: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.copy-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.copy-box input {
+    flex: 1;
+    padding: 8px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.success {
+    display: none;
+    background: #e6ffe6;
+    color: green;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+🔥 أفضل عروض شحن الباقات 🔥
+</div>
+
+<!-- Vodafone -->
+<div class="section">
+<h2>🔴 فودافون</h2>
+<div class="container">
+
+<div class="card">
+<h3>40 جيجا + 7500 وحدة</h3>
+<div>لمدة 3 شهور</div>
+<div class="price">125 جنيه</div>
+<button onclick="order('فودافون - 40 جيجا')">اطلب الآن</button>
+</div>
+
+<div class="card">
+<h3>32 جيجا + 9000 وحدة</h3>
+<div>لمدة شهرين</div>
+<div class="price">105 جنيه</div>
+<button onclick="order('فودافون - 32 جيجا')">اطلب الآن</button>
+</div>
+
+<div class="card">
+<h3>17 جيجا + 5000 وحدة</h3>
+<div>لمدة شهر</div>
+<div class="price">80 جنيه</div>
+<button onclick="order('فودافون - 17 جيجا')">اطلب الآن</button>
+</div>
+
+</div>
+</div>
+
+<!-- Etisalat -->
+<div class="section">
+<h2>🟢 اتصالات</h2>
+<div class="container">
+
+<div class="card">
+<h3>70 جيجا + 9000 وحدة</h3>
+<div>3 شهور</div>
+<div class="price">150 جنيه</div>
+<button onclick="order('اتصالات - 70 جيجا')">اطلب الآن</button>
+</div>
+
+<div class="card">
+<h3>50 جيجا + 6500 وحدة</h3>
+<div>3 شهور</div>
+<div class="price">115 جنيه</div>
+<button onclick="order('اتصالات - 50 جيجا')">اطلب الآن</button>
+</div>
+
+<div class="card">
+<h3>25 جيجا + 4300 وحدة</h3>
+<div>شهر</div>
+<div class="price">85 جنيه</div>
+<button onclick="order('اتصالات - 25 جيجا')">اطلب الآن</button>
+</div>
+
+</div>
+</div>
+
+<!-- Orange -->
+<div class="section">
+<h2>🟠 أورنج</h2>
+<div class="container">
+
+<div class="card">
+<h3>70 جيجا + 4500 وحدة</h3>
+<div>3 شهور</div>
+<div class="price">140 جنيه</div>
+<button onclick="order('اورنج - 70 جيجا')">اطلب الآن</button>
+</div>
+
+<div class="card">
+<h3>50 جيجا + 4600 وحدة</h3>
+<div>3 شهور</div>
+<div class="price">120 جنيه</div>
+<button onclick="order('اورنج - 50 جيجا')">اطلب الآن</button>
+</div>
+
+<div class="card">
+<h3>35 جيجا + 5000 وحدة</h3>
+<div>3 شهور</div>
+<div class="price">95 جنيه</div>
+<button onclick="order('اورنج - 35 جيجا')">اطلب الآن</button>
+</div>
+
+</div>
+</div>
+
+<!-- WE -->
+<div class="section">
+<h2>🟣 WE</h2>
+<div class="container">
+
+<div class="card">
+<h3>65 جيجا + 5500 وحدة</h3>
+<div>3 شهور</div>
+<div class="price">190 جنيه</div>
+<button onclick="order('WE - 65 جيجا')">اطلب الآن</button>
+</div>
+
+<div class="card">
+<h3>47 جيجا + 4900 وحدة</h3>
+<div>3 شهور</div>
+<div class="price">120 جنيه</div>
+<button onclick="order('WE - 47 جيجا')">اطلب الآن</button>
+</div>
+
+<div class="card">
+<h3>16 جيجا + 3500 وحدة</h3>
+<div>شهرين</div>
+<div class="price">85 جنيه</div>
+<button onclick="order('WE - 16 جيجا')">اطلب الآن</button>
+</div>
+
+</div>
+</div>
+
+<!-- Payment -->
+<div class="payment" id="payment">
+
+<h3>تفاصيل الدفع</h3>
+
+<div class="copy-box">
+<input type="text" id="cash" value="0023363476" readonly>
+<button onclick="copy()">نسخ</button>
+</div>
+
+<input type="text" placeholder="رقم الموبايل المراد شحنه">
+
+<input type="file">
+
+<button onclick="confirm()">تأكيد الشحن</button>
+
+<div class="success" id="msg">
+✅ تم استلام طلبك بنجاح! برجاء الانتظار سيتم مراجعة التحويل وتفعيل الباقة خلال دقائق
+</div>
+
+</div>
+
+<script>
+function order(packageName){
+    document.getElementById("payment").style.display = "block";
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+function copy(){
+    let text = document.getElementById("cash");
+    text.select();
+    document.execCommand("copy");
+    alert("تم نسخ الرقم");
+}
+
+function confirm(){
+    document.getElementById("msg").style.display = "block";
+}
+</script>
+
+</body>
+</html>
