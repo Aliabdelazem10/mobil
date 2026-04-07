@@ -3,11 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>شحن باقات الموبايل</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
-
 <style>
 :root {
     --main: #e60000;
@@ -15,224 +12,133 @@
     --text: #333;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Cairo', sans-serif;
-}
-
-body {
-    background: var(--gray);
-    color: var(--text);
-}
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Cairo',sans-serif;}
+body {background: var(--gray); color: var(--text);}
 
 /* HEADER */
-.header {
-    background: white;
-    padding: 20px 30px;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+.header {background:white; padding:20px 30px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;}
+.logo {font-weight:800; color:var(--main); font-size:20px;}
 
-.logo {
-    font-weight: 800;
-    color: var(--main);
-    font-size: 20px;
-}
+/* HERO */
+.hero {text-align:center; padding:50px 20px;}
+.hero h1 {font-size:32px; margin-bottom:10px;}
+.hero p {color:#666;}
 
-.hero {
-    text-align: center;
-    padding: 50px 20px;
-}
-
-.hero h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
-}
-
-.hero p {
-    color: #666;
-}
-
-/* SECTIONS */
-.section {
-    padding: 30px 20px;
-}
-
-.section-title {
-    font-size: 22px;
-    margin-bottom: 20px;
-    font-weight: 700;
-}
+/* SECTION */
+.section {padding:30px 20px;}
+.section-title {font-size:22px; margin-bottom:20px; font-weight:700; display:flex; align-items:center; gap:10px;}
 
 /* CARDS */
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-    gap: 15px;
-}
-
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #eee;
-    transition: 0.2s;
-}
-
-.card:hover {
-    border-color: var(--main);
-}
-
-.card h3 {
-    font-size: 18px;
-}
-
-.card p {
-    color: #666;
-    font-size: 14px;
-    margin: 5px 0;
-}
-
-.price {
-    margin: 10px 0;
-    font-size: 20px;
-    color: var(--main);
-    font-weight: bold;
-}
-
-.btn {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    background: var(--main);
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.btn:hover {
-    opacity: 0.9;
-}
+.cards {display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:15px;}
+.card {background:white; padding:20px; border-radius:12px; border:1px solid #eee; transition:0.2s;}
+.card:hover {border-color: var(--main);}
+.card h3 {font-size:18px;}
+.card p {color:#666; font-size:14px; margin:5px 0;}
+.price {margin:10px 0; font-size:20px; color:var(--main); font-weight:bold;}
+.btn {width:100%; padding:10px; border:none; background:var(--main); color:white; border-radius:6px; cursor:pointer;}
+.btn:hover {opacity:0.9;}
 
 /* PAYMENT */
-.payment {
-    display: none;
-    max-width: 400px;
-    margin: 30px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #eee;
-}
-
-.selected {
-    background: #fff0f0;
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 10px;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-}
-
-.copy-box {
-    display: flex;
-    gap: 10px;
-}
-
-.success {
-    display: none;
-    background: #e6ffe6;
-    padding: 10px;
-    border-radius: 6px;
-    text-align: center;
-}
+.payment {display:none; max-width:400px; margin:30px auto; background:white; padding:20px; border-radius:12px; border:1px solid #eee;}
+.selected {background:#fff0f0; padding:10px; border-radius:6px; margin-bottom:10px;}
+input {width:100%; padding:10px; margin:10px 0;}
+.copy-box {display:flex; gap:10px;}
+.success {display:none; background:#e6ffe6; padding:10px; border-radius:6px; text-align:center;}
 </style>
 </head>
-
 <body>
 
-<!-- HEADER -->
-<div class="header">
-    <div class="logo">Vodafone Services</div>
-</div>
+<div class="header"><div class="logo">خدمة شحن الباقات</div></div>
 
-<!-- HERO -->
 <div class="hero">
-    <h1>اشحن باقتك في ثواني ⚡</h1>
-    <p>اختار الباقة المناسبة وحوّل واحنا نفعلها فورًا</p>
+<h1>اشحن باقتك بسرعة ⚡</h1>
+<p>اختار الباقة المناسبة وحوّل واحنا نفعلها فورًا</p>
 </div>
 
-<!-- Vodafone -->
+<!-- فودافون -->
 <div class="section">
-<div class="section-title">🔴 فودافون</div>
-
+<div class="section-title">
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Vodafone_logo.svg" width="30" alt="فودافون">
+<span>فودافون</span>
+</div>
 <div class="cards">
-
-<div class="card">
-<h3>40 جيجا + 7500 وحدة</h3>
-<p>لمدة 3 شهور</p>
-<div class="price">125 جنيه</div>
-<button class="btn" onclick="order('فودافون 40 جيجا')">اطلب الآن</button>
+<div class="card"><h3>40 جيجا + 7500 وحدة</h3><p>3 شهور</p><div class="price">125 جنيه</div><button class="btn" onclick="order('فودافون - 40 جيجا')">اطلب الآن</button></div>
+<div class="card"><h3>32 جيجا + 9000 وحدة</h3><p>شهرين</p><div class="price">105 جنيه</div><button class="btn" onclick="order('فودافون - 32 جيجا')">اطلب الآن</button></div>
+<div class="card"><h3>17 جيجا + 5000 وحدة</h3><p>شهر</p><div class="price">80 جنيه</div><button class="btn" onclick="order('فودافون - 17 جيجا')">اطلب الآن</button></div>
+</div>
 </div>
 
-<div class="card">
-<h3>32 جيجا + 9000 وحدة</h3>
-<p>لمدة شهرين</p>
-<div class="price">105 جنيه</div>
-<button class="btn" onclick="order('فودافون 32 جيجا')">اطلب الآن</button>
+<!-- اتصالات -->
+<div class="section">
+<div class="section-title">
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Etisalat_logo.svg" width="30" alt="اتصالات">
+<span>اتصالات</span>
+</div>
+<div class="cards">
+<div class="card"><h3>70 جيجا + 9000 وحدة</h3><p>3 شهور</p><div class="price">150 جنيه</div><button class="btn" onclick="order('اتصالات - 70 جيجا')">اطلب الآن</button></div>
+<div class="card"><h3>50 جيجا + 6500 وحدة</h3><p>3 شهور</p><div class="price">115 جنيه</div><button class="btn" onclick="order('اتصالات - 50 جيجا')">اطلب الآن</button></div>
+<div class="card"><h3>25 جيجا + 4300 وحدة</h3><p>شهر</p><div class="price">85 جنيه</div><button class="btn" onclick="order('اتصالات - 25 جيجا')">اطلب الآن</button></div>
+</div>
 </div>
 
+<!-- أورنج -->
+<div class="section">
+<div class="section-title">
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Orange_logo.svg" width="30" alt="أورنج">
+<span>أورنج</span>
+</div>
+<div class="cards">
+<div class="card"><h3>70 جيجا + 4500 وحدة</h3><p>3 شهور</p><div class="price">140 جنيه</div><button class="btn" onclick="order('أورنج - 70 جيجا')">اطلب الآن</button></div>
+<div class="card"><h3>50 جيجا + 4600 وحدة</h3><p>3 شهور</p><div class="price">120 جنيه</div><button class="btn" onclick="order('أورنج - 50 جيجا')">اطلب الآن</button></div>
+<div class="card"><h3>35 جيجا + 5000 وحدة</h3><p>3 شهور</p><div class="price">95 جنيه</div><button class="btn" onclick="order('أورنج - 35 جيجا')">اطلب الآن</button></div>
+</div>
+</div>
+
+<!-- WE -->
+<div class="section">
+<div class="section-title">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/We_logo.svg" width="30" alt="WE">
+<span>WE</span>
+</div>
+<div class="cards">
+<div class="card"><h3>65 جيجا + 5500 وحدة</h3><p>3 شهور</p><div class="price">190 جنيه</div><button class="btn" onclick="order('WE - 65 جيجا')">اطلب الآن</button></div>
+<div class="card"><h3>47 جيجا + 4900 وحدة</h3><p>3 شهور</p><div class="price">120 جنيه</div><button class="btn" onclick="order('WE - 47 جيجا')">اطلب الآن</button></div>
+<div class="card"><h3>16 جيجا + 3500 وحدة</h3><p>شهرين</p><div class="price">85 جنيه</div><button class="btn" onclick="order('WE - 16 جيجا')">اطلب الآن</button></div>
 </div>
 </div>
 
 <!-- PAYMENT -->
-<div class="payment" id="pay">
-
-<div class="selected" id="selected"></div>
-
+<div class="payment" id="payment">
+<div class="selected" id="selectedPackage"></div>
 <h3>الدفع عبر فودافون كاش</h3>
-
 <div class="copy-box">
-<input type="text" value="0023363476" id="num" readonly>
-<button onclick="copy()">نسخ</button>
+<input type="text" id="cashNumber" value="0023363476" readonly>
+<button onclick="copyNumber()">نسخ</button>
 </div>
-
-<input type="text" placeholder="رقم الموبايل">
-
+<input type="text" placeholder="رقم الموبايل المراد شحنه">
 <input type="file">
-
-<button class="btn" onclick="done()">تأكيد الشحن</button>
-
-<div class="success" id="msg">
-✅ تم استلام طلبك بنجاح! سيتم التفعيل خلال دقائق
+<button class="btn" onclick="confirmPayment()">تأكيد الشحن</button>
+<div class="success" id="successMsg">
+✅ تم استلام طلبك بنجاح! برجاء الانتظار سيتم مراجعة التحويل وتفعيل الباقة خلال دقائق
 </div>
-
 </div>
 
 <script>
-function order(name){
-    document.getElementById("pay").style.display="block";
-    document.getElementById("selected").innerText="الباقة: "+name;
-    window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+function order(packageName){
+    document.getElementById("payment").style.display="block";
+    document.getElementById("selectedPackage").innerText="الباقة المختارة: "+packageName;
+    window.scrollTo({top:document.body.scrollHeight, behavior:'smooth'});
 }
 
-function copy(){
-    let x=document.getElementById("num");
-    x.select();
+function copyNumber(){
+    let copyText = document.getElementById("cashNumber");
+    copyText.select();
     document.execCommand("copy");
-    alert("تم النسخ");
+    alert("تم نسخ رقم فودافون كاش");
 }
 
-function done(){
-    document.getElementById("msg").style.display="block";
+function confirmPayment(){
+    document.getElementById("successMsg").style.display="block";
 }
 </script>
 
