@@ -3,11 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>شحن الباقات</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+<title>شحن باقات الموبايل</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
+:root {
+    --main: #e60000;
+    --gray: #f5f5f5;
+    --text: #333;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -16,190 +23,185 @@
 }
 
 body {
-    background: linear-gradient(135deg,#f5f5f5,#eaeaea);
+    background: var(--gray);
+    color: var(--text);
 }
 
 /* HEADER */
 .header {
-    background: linear-gradient(90deg,#e60000,#ff3b3b);
-    color: white;
+    background: white;
+    padding: 20px 30px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 800;
+    color: var(--main);
+    font-size: 20px;
+}
+
+.hero {
     text-align: center;
-    padding: 25px;
-    font-size: 26px;
-    font-weight: bold;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    padding: 50px 20px;
 }
 
-/* SECTION */
+.hero h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #666;
+}
+
+/* SECTIONS */
 .section {
-    padding: 25px;
+    padding: 30px 20px;
 }
 
-.section h2 {
-    margin-bottom: 15px;
+.section-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
 /* CARDS */
-.container {
+.cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
     gap: 15px;
 }
 
 .card {
     background: white;
     padding: 20px;
-    border-radius: 15px;
-    transition: 0.3s;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    border: 1px solid #eee;
+    transition: 0.2s;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    border-color: var(--main);
+}
+
+.card h3 {
+    font-size: 18px;
+}
+
+.card p {
+    color: #666;
+    font-size: 14px;
+    margin: 5px 0;
 }
 
 .price {
-    color: #e60000;
-    font-size: 22px;
     margin: 10px 0;
+    font-size: 20px;
+    color: var(--main);
     font-weight: bold;
 }
 
-button {
-    background: linear-gradient(90deg,#e60000,#ff3b3b);
-    color: white;
-    border: none;
-    padding: 10px;
+.btn {
     width: 100%;
-    border-radius: 8px;
+    padding: 10px;
+    border: none;
+    background: var(--main);
+    color: white;
+    border-radius: 6px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-button:hover {
+.btn:hover {
     opacity: 0.9;
 }
 
 /* PAYMENT */
 .payment {
     display: none;
-    margin: 20px;
-    padding: 20px;
+    max-width: 400px;
+    margin: 30px auto;
     background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #eee;
 }
 
 .selected {
-    background: #fff3f3;
+    background: #fff0f0;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 6px;
     margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
 }
 
 .copy-box {
     display: flex;
     gap: 10px;
-    margin-bottom: 10px;
-}
-
-.copy-box input {
-    flex: 1;
-    padding: 10px;
-}
-
-input[type="text"], input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
 }
 
 .success {
     display: none;
-    margin-top: 15px;
     background: #e6ffe6;
-    color: green;
-    padding: 15px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 6px;
     text-align: center;
-    font-weight: bold;
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <div class="header">
-🚀 شحن باقات الموبايل بأفضل الأسعار
+    <div class="logo">Vodafone Services</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>اشحن باقتك في ثواني ⚡</h1>
+    <p>اختار الباقة المناسبة وحوّل واحنا نفعلها فورًا</p>
 </div>
 
 <!-- Vodafone -->
 <div class="section">
-<h2>🔴 فودافون</h2>
-<div class="container">
+<div class="section-title">🔴 فودافون</div>
+
+<div class="cards">
 
 <div class="card">
 <h3>40 جيجا + 7500 وحدة</h3>
-<p>3 شهور</p>
+<p>لمدة 3 شهور</p>
 <div class="price">125 جنيه</div>
-<button onclick="order('فودافون - 40 جيجا')">اطلب الآن</button>
+<button class="btn" onclick="order('فودافون 40 جيجا')">اطلب الآن</button>
 </div>
 
 <div class="card">
 <h3>32 جيجا + 9000 وحدة</h3>
-<p>شهرين</p>
+<p>لمدة شهرين</p>
 <div class="price">105 جنيه</div>
-<button onclick="order('فودافون - 32 جيجا')">اطلب الآن</button>
-</div>
-
-<div class="card">
-<h3>17 جيجا + 5000 وحدة</h3>
-<p>شهر</p>
-<div class="price">80 جنيه</div>
-<button onclick="order('فودافون - 17 جيجا')">اطلب الآن</button>
-</div>
-
-</div>
-</div>
-
-<!-- Etisalat -->
-<div class="section">
-<h2>🟢 اتصالات</h2>
-<div class="container">
-
-<div class="card">
-<h3>70 جيجا + 9000 وحدة</h3>
-<p>3 شهور</p>
-<div class="price">150 جنيه</div>
-<button onclick="order('اتصالات - 70 جيجا')">اطلب الآن</button>
-</div>
-
-<div class="card">
-<h3>50 جيجا + 6500 وحدة</h3>
-<p>3 شهور</p>
-<div class="price">115 جنيه</div>
-<button onclick="order('اتصالات - 50 جيجا')">اطلب الآن</button>
-</div>
-
-<div class="card">
-<h3>25 جيجا + 4300 وحدة</h3>
-<p>شهر</p>
-<div class="price">85 جنيه</div>
-<button onclick="order('اتصالات - 25 جيجا')">اطلب الآن</button>
+<button class="btn" onclick="order('فودافون 32 جيجا')">اطلب الآن</button>
 </div>
 
 </div>
 </div>
 
 <!-- PAYMENT -->
-<div class="payment" id="payment">
+<div class="payment" id="pay">
 
-<div class="selected" id="selectedPackage"></div>
+<div class="selected" id="selected"></div>
 
-<h3>💰 الدفع</h3>
+<h3>الدفع عبر فودافون كاش</h3>
 
 <div class="copy-box">
-<input type="text" id="cash" value="0023363476" readonly>
+<input type="text" value="0023363476" id="num" readonly>
 <button onclick="copy()">نسخ</button>
 </div>
 
@@ -207,30 +209,30 @@ input[type="text"], input[type="file"] {
 
 <input type="file">
 
-<button onclick="confirm()">تأكيد الشحن</button>
+<button class="btn" onclick="done()">تأكيد الشحن</button>
 
 <div class="success" id="msg">
-✅ تم استلام طلبك بنجاح! برجاء الانتظار سيتم مراجعة التحويل وتفعيل الباقة خلال دقائق
+✅ تم استلام طلبك بنجاح! سيتم التفعيل خلال دقائق
 </div>
 
 </div>
 
 <script>
 function order(name){
-    document.getElementById("payment").style.display = "block";
-    document.getElementById("selectedPackage").innerText = "الباقة المختارة: " + name;
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    document.getElementById("pay").style.display="block";
+    document.getElementById("selected").innerText="الباقة: "+name;
+    window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
 }
 
 function copy(){
-    let text = document.getElementById("cash");
-    text.select();
+    let x=document.getElementById("num");
+    x.select();
     document.execCommand("copy");
-    alert("تم نسخ الرقم");
+    alert("تم النسخ");
 }
 
-function confirm(){
-    document.getElementById("msg").style.display = "block";
+function done(){
+    document.getElementById("msg").style.display="block";
 }
 </script>
 
