@@ -4,358 +4,437 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بوابة الشحن الاحترافية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --vodafone: #e60000;
-            --etisalat: #006f3a;
-            --orange: #ff6600;
-            --we: #5c2d91;
-            --bg-color: #f0f4f8;
-            --box-bg: #ffffff;
-            --text-main: #2c3e50;
-            --text-muted: #7f8c8d;
+            --vodafone: #ff2a2a;
+            --etisalat: #00e673; /* تفتيح الأخضر ليكون أكثر وضوحاً */
+            --orange: #ff9900;
+            --we: #b862e3; /* تفتيح الموف ليكون أكثر وضوحاً */
+            --dark-bg: #0f172a;
+            /* خلفية الكروت أصبحت داكنة شفافة لزيادة التباين */
+            --glass-bg: rgba(15, 23, 42, 0.7); 
+            --glass-border: rgba(255, 255, 255, 0.15);
         }
 
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            background: var(--dark-bg);
+            color: #ffffff;
+            overflow-x: hidden;
+            /* ظل عام للكلام لزيادة الوضوح */
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
         }
 
-        .charge-container {
-            background-color: var(--box-bg);
-            width: 100%;
-            max-width: 600px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            padding: 40px;
-            box-sizing: border-box;
-            margin: 20px;
+        /* خلفية متحركة */
+        .bg-animation {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            background: linear-gradient(45deg, #020617, #1e1b4b, #0f172a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
         }
 
-        .title {
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .shape {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 10s infinite ease-in-out alternate;
+        }
+
+        .shape-1 { width: 300px; height: 300px; background: var(--we); top: -100px; left: -100px; }
+        .shape-2 { width: 400px; height: 400px; background: var(--vodafone); bottom: -150px; right: -100px; animation-delay: -5s; }
+        .shape-3 { width: 250px; height: 250px; background: var(--etisalat); top: 50%; left: 50%; transform: translate(-50%, -50%); animation-duration: 15s; }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(50px) scale(1.2); }
+        }
+
+        header {
             text-align: center;
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 30px;
-            color: var(--text-main);
+            padding: 40px 20px;
         }
 
-        .section-label {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            display: block;
+        header h1 {
+            font-size: 42px;
+            margin: 0;
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
         }
 
-        /* اختيار الشبكة */
-        .network-selector {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .network-option {
-            background-color: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 12px;
-            padding: 15px 5px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        .network-option:hover {
-            transform: translateY(-2px);
-        }
-
-        /* الألوان عند الاختيار */
-        .network-option.active[data-network="vodafone"] { border-color: var(--vodafone); background-color: #ffe6e6; color: var(--vodafone); }
-        .network-option.active[data-network="etisalat"] { border-color: var(--etisalat); background-color: #e6f3eb; color: var(--etisalat); }
-        .network-option.active[data-network="orange"] { border-color: var(--orange); background-color: #fff0e6; color: var(--orange); }
-        .network-option.active[data-network="we"] { border-color: var(--we); background-color: #f2eaf5; color: var(--we); }
-
-        /* حقول الإدخال */
-        .input-group {
-            margin-bottom: 25px;
-        }
-
-        input[type="tel"], select {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 12px;
-            font-size: 16px;
-            font-family: 'Cairo', sans-serif;
-            box-sizing: border-box;
-            transition: border-color 0.3s;
-            outline: none;
-            background-color: #f8f9fa;
-        }
-
-        input[type="tel"]:focus, select:focus {
-            border-color: #3498db;
-            background-color: #fff;
-        }
-
-        /* زر الإرسال */
-        .btn-submit {
-            width: 100%;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 18px;
+        header p {
             font-size: 20px;
-            font-weight: 800;
-            border-radius: 12px;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .company-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--glass-border);
+            display: inline-block;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* الكروت بعد تحسين التباين */
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(15, 23, 42, 0.85);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            font-weight: 900;
+            margin: 0 0 10px 0;
+            color: #ffffff;
+        }
+
+        .price {
+            font-size: 38px;
+            font-weight: 900;
+            margin: 15px 0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .voda .price { color: var(--vodafone); }
+        .eti .price { color: var(--etisalat); }
+        .org .price { color: var(--orange); }
+        .we .price { color: var(--we); }
+
+        .voda:hover { border-color: var(--vodafone); box-shadow: 0 10px 40px rgba(255, 42, 42, 0.3); }
+        .eti:hover { border-color: var(--etisalat); box-shadow: 0 10px 40px rgba(0, 230, 115, 0.3); }
+        .org:hover { border-color: var(--orange); box-shadow: 0 10px 40px rgba(255, 153, 0, 0.3); }
+        .we:hover { border-color: var(--we); box-shadow: 0 10px 40px rgba(184, 98, 227, 0.3); }
+
+        .duration { 
+            color: #f1f5f9; /* لون أبيض مكسور بدل الرصاصي الباهت */
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 25px; 
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 20px;
+            font-weight: 900;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: 0.3s;
+            width: 100%;
             font-family: 'Cairo', sans-serif;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
 
-        .btn-submit:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-        }
+        .voda .btn:hover { background: var(--vodafone); border-color: var(--vodafone); }
+        .eti .btn:hover { background: var(--etisalat); border-color: var(--etisalat); }
+        .org .btn:hover { background: var(--orange); border-color: var(--orange); }
+        .we .btn:hover { background: var(--we); border-color: var(--we); }
 
-        .btn-submit:disabled {
-            background-color: #bdc3c7;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        /* النافذة المنبثقة (Modal) */
-        .modal-overlay {
+        /* نافذة الموبايل والشحن */
+        .modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            justify-content: center; align-items: center;
-            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
         }
 
         .modal-content {
-            background: white;
+            background: #0f172a;
+            border: 2px solid var(--glass-border);
             padding: 40px;
             border-radius: 20px;
-            text-align: center;
-            max-width: 450px;
             width: 90%;
-            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            max-width: 450px;
+            text-align: center;
+            animation: zoomIn 0.4s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
         }
 
-        @keyframes popIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+        @keyframes zoomIn {
+            0% { transform: scale(0.8) translateY(50px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
         }
 
-        .success-icon {
-            width: 80px; height: 80px;
-            background-color: #2ecc71;
-            color: white;
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 40px;
-            margin: 0 auto 20px auto;
-        }
+        #modalTitle { font-size: 28px; font-weight: 900; color: #ffffff; margin-top: 0; }
+        #modalDesc { color: #f8fafc; font-size: 20px; font-weight: 700; margin-bottom: 25px; }
 
-        .receipt-details {
-            background-color: #f8f9fa;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: right;
-        }
-
-        .receipt-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            border-bottom: 1px dashed #ccc;
-            padding-bottom: 5px;
-        }
-
-        .receipt-row:last-child {
-            border-bottom: none; margin-bottom: 0; padding-bottom: 0;
-        }
-
-        .btn-close {
-            background-color: #34495e; color: white; border: none;
-            padding: 12px 30px; font-size: 16px; font-weight: 600;
-            border-radius: 10px; cursor: pointer; font-family: 'Cairo', sans-serif;
+        .modal input {
             width: 100%;
+            padding: 15px;
+            margin: 10px 0 20px 0;
+            background: #1e293b;
+            border: 2px solid #475569;
+            color: #ffffff;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Cairo', sans-serif;
+            box-sizing: border-box;
+            text-align: center;
+            outline: none;
+            transition: 0.3s;
         }
 
-        /* استجابة للموبايل */
-        @media(max-width: 480px) {
-            .network-selector { grid-template-columns: repeat(2, 1fr); }
-            .charge-container { padding: 25px; }
+        .modal input::placeholder { color: #94a3b8; font-weight: normal; }
+        .modal input:focus { border-color: #3b82f6; background: #0f172a; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
+
+        .btn-confirm {
+            background: #3b82f6;
+            color: #ffffff;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 12px;
+            font-size: 22px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Cairo', sans-serif;
         }
+
+        .btn-confirm:hover { background: #2563eb; transform: translateY(-2px); }
+        
+        .btn-cancel { 
+            background: transparent; color: #cbd5e1; border: none; 
+            margin-top: 15px; cursor: pointer; font-family: 'Cairo'; 
+            font-size: 18px; font-weight: bold; text-decoration: underline; 
+        }
+
+        .btn-cancel:hover { color: #ffffff; }
+
+        .loader {
+            display: none;
+            border: 5px solid #1e293b;
+            border-top: 5px solid #3b82f6;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .success-msg { display: none; color: #10b981; font-size: 28px; font-weight: 900; margin-top: 20px; animation: pop 0.5s ease; }
+        @keyframes pop { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+        
+        .demo-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 14px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-top: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="charge-container">
-        <h2 class="title">بوابة شحن الباقات</h2>
-
-        <label class="section-label">1. اختر الشبكة:</label>
-        <div class="network-selector" id="networkSelector">
-            <div class="network-option" data-network="vodafone">فودافون</div>
-            <div class="network-option" data-network="etisalat">اتصالات</div>
-            <div class="network-option" data-network="orange">أورانج</div>
-            <div class="network-option" data-network="we">وي (WE)</div>
-        </div>
-
-        <div class="input-group">
-            <label class="section-label" for="phoneNumber">2. رقم الموبايل:</label>
-            <input type="tel" id="phoneNumber" placeholder="أدخل رقم الموبايل هنا..." maxlength="11">
-        </div>
-
-        <div class="input-group">
-            <label class="section-label" for="packageSelect">3. اختر الباقة والوحدات:</label>
-            <select id="packageSelect" disabled>
-                <option value="">رجاءً اختر الشبكة أولاً...</option>
-            </select>
-        </div>
-
-        <button class="btn-submit" id="submitBtn" disabled>إرسال للرقم</button>
+    <div class="bg-animation">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
     </div>
 
-    <div class="modal-overlay" id="successModal">
+    <header>
+        <h1>⚡ منصة الشحن السريع ⚡</h1>
+        <p>اختر باقتك، دخل رقمك، واشحن في ثواني</p>
+    </header>
+
+    <div class="container">
+        
+        <h2 class="company-title" style="color: var(--vodafone);">فودافون</h2>
+        <div class="grid">
+            <div class="card voda">
+                <h3>40 جيجا + 7500 وحدة</h3>
+                <div class="price">125 ج.م</div>
+                <div class="duration">لمدة 3 شهور</div>
+                <button class="btn" onclick="openModal('فودافون', '40 جيجا + 7500 وحدة')">شحن الآن</button>
+            </div>
+            <div class="card voda">
+                <h3>32 جيجا + 9000 وحدة</h3>
+                <div class="price">105 ج.م</div>
+                <div class="duration">لمدة شهرين</div>
+                <button class="btn" onclick="openModal('فودافون', '32 جيجا + 9000 وحدة')">شحن الآن</button>
+            </div>
+            <div class="card voda">
+                <h3>17 جيجا + 5000 وحدة</h3>
+                <div class="price">80 ج.م</div>
+                <div class="duration">لمدة شهر</div>
+                <button class="btn" onclick="openModal('فودافون', '17 جيجا + 5000 وحدة')">شحن الآن</button>
+            </div>
+        </div>
+
+        <h2 class="company-title" style="color: var(--etisalat);">اتصالات</h2>
+        <div class="grid">
+            <div class="card eti">
+                <h3>70 جيجا + 9000 وحدة</h3>
+                <div class="price">150 ج.م</div>
+                <div class="duration">لمدة 3 شهور</div>
+                <button class="btn" onclick="openModal('اتصالات', '70 جيجا + 9000 وحدة')">شحن الآن</button>
+            </div>
+            <div class="card eti">
+                <h3>50 جيجا + 6500 وحدة</h3>
+                <div class="price">115 ج.م</div>
+                <div class="duration">لمدة 3 شهور</div>
+                <button class="btn" onclick="openModal('اتصالات', '50 جيجا + 6500 وحدة')">شحن الآن</button>
+            </div>
+            <div class="card eti">
+                <h3>25 جيجا + 4300 وحدة</h3>
+                <div class="price">85 ج.م</div>
+                <div class="duration">لمدة شهر</div>
+                <button class="btn" onclick="openModal('اتصالات', '25 جيجا + 4300 وحدة')">شحن الآن</button>
+            </div>
+        </div>
+
+        <h2 class="company-title" style="color: var(--orange);">أورانج</h2>
+        <div class="grid">
+            <div class="card org">
+                <h3>70 جيجا + 4500 وحدة</h3>
+                <div class="price">140 ج.م</div>
+                <div class="duration">لمدة 3 شهور</div>
+                <button class="btn" onclick="openModal('أورانج', '70 جيجا + 4500 وحدة')">شحن الآن</button>
+            </div>
+            <div class="card org">
+                <h3>50 جيجا + 4600 وحدة</h3>
+                <div class="price">120 ج.م</div>
+                <div class="duration">لمدة 3 شهور</div>
+                <button class="btn" onclick="openModal('أورانج', '50 جيجا + 4600 وحدة')">شحن الآن</button>
+            </div>
+            <div class="card org">
+                <h3>35 جيجا + 5000 وحدة</h3>
+                <div class="price">95 ج.م</div>
+                <div class="duration">لمدة 3 شهور</div>
+                <button class="btn" onclick="openModal('أورانج', '35 جيجا + 5000 وحدة')">شحن الآن</button>
+            </div>
+        </div>
+
+        <h2 class="company-title" style="color: var(--we);">وي (WE)</h2>
+        <div class="grid">
+            <div class="card we">
+                <h3>65 جيجا + 5500 وحدة</h3>
+                <div class="price">190 ج.م</div>
+                <div class="duration">لمدة 3 شهور</div>
+                <button class="btn" onclick="openModal('وي', '65 جيجا + 5500 وحدة')">شحن الآن</button>
+            </div>
+            <div class="card we">
+                <h3>47 جيجا + 4900 وحدة</h3>
+                <div class="price">120 ج.م</div>
+                <div class="duration">لمدة 3 شهور</div>
+                <button class="btn" onclick="openModal('وي', '47 جيجا + 4900 وحدة')">شحن الآن</button>
+            </div>
+            <div class="card we">
+                <h3>16 جيجا + 3500 وحدة</h3>
+                <div class="price">85 ج.م</div>
+                <div class="duration">لمدة شهرين</div>
+                <button class="btn" onclick="openModal('وي', '16 جيجا + 3500 وحدة')">شحن الآن</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal" id="chargeModal">
         <div class="modal-content">
-            <div class="success-icon">✓</div>
-            <h2 style="margin: 0 0 10px 0; color: #2c3e50;">تم الشحن بنجاح!</h2>
+            <h2 id="modalTitle">شحن باقة</h2>
+            <p id="modalDesc"></p>
             
-            <div class="receipt-details">
-                <div class="receipt-row">
-                    <span style="color: var(--text-muted);">الشبكة:</span>
-                    <strong id="receiptNetwork">---</strong>
-                </div>
-                <div class="receipt-row">
-                    <span style="color: var(--text-muted);">رقم الموبايل:</span>
-                    <strong id="receiptNumber">---</strong>
-                </div>
-                <div class="receipt-row">
-                    <span style="color: var(--text-muted);">تفاصيل الباقة:</span>
-                    <strong id="receiptPackage" style="text-align: left; max-width: 60%;">---</strong>
-                </div>
-                <div class="receipt-row" style="margin-top: 10px; color: #e74c3c; font-size: 12px; justify-content: center;">
-                </div>
+            <div id="inputSection">
+                <input type="tel" id="mobileNumber" placeholder="أدخل رقم الموبايل للتأكيد..." maxlength="11">
+                <button class="btn-confirm" onclick="processCharge()">إرسال وتأكيد</button>
+                <button class="btn-cancel" onclick="closeModal()">إلغاء الأمر</button>
             </div>
 
-            <button class="btn-close" onclick="closeModal()">إغلاق ورجوع</button>
+            <div class="loader" id="loader"></div>
+            <div class="success-msg" id="successMsg">
+                ✔️ تمت العملية بنجاح!<br>
+                <span style="font-size: 20px; color: #f8fafc; display: block; margin-top: 15px;" id="receiptDetails"></span>
+                
+                <div class="demo-badge">هذه نسخة تجريبية للعرض فقط </div>
+                
+                <button class="btn-confirm" style="margin-top: 25px; background: #10b981;" onclick="closeModal()">إغلاق</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // قاعدة بيانات الباقات
-        const packagesData = {
-            vodafone: [
-                { id: "v1", text: "40 جيجا + 7500 وحدة - 125 ج.م (3 شهور)" },
-                { id: "v2", text: "32 جيجا + 9000 وحدة - 105 ج.م (شهرين)" },
-                { id: "v3", text: "17 جيجا + 5000 وحدة - 80 ج.م (شهر)" }
-            ],
-            etisalat: [
-                { id: "e1", text: "70 جيجا + 9000 وحدة - 150 ج.م (3 شهور)" },
-                { id: "e2", text: "50 جيجا + 6500 وحدة - 115 ج.م (3 شهور)" },
-                { id: "e3", text: "25 جيجا + 4300 وحدة - 85 ج.م (شهر)" }
-            ],
-            orange: [
-                { id: "o1", text: "70 جيجا + 4500 وحدة - 140 ج.م (3 شهور)" },
-                { id: "o2", text: "50 جيجا + 4600 وحدة - 120 ج.م (3 شهور)" },
-                { id: "o3", text: "35 جيجا + 5000 وحدة - 95 ج.م (3 شهور)" }
-            ],
-            we: [
-                { id: "w1", text: "65 جيجا + 5500 وحدة - 190 ج.م (3 شهور)" },
-                { id: "w2", text: "47 جيجا + 4900 وحدة - 120 ج.م (3 شهور)" },
-                { id: "w3", text: "16 جيجا + 3500 وحدة - 85 ج.م (شهرين)" }
-            ]
-        };
-
-        const networkOptions = document.querySelectorAll('.network-option');
-        const packageSelect = document.getElementById('packageSelect');
-        const phoneNumber = document.getElementById('phoneNumber');
-        const submitBtn = document.getElementById('submitBtn');
-        let selectedNetwork = '';
-        let networkNameArabic = '';
-
-        // تفاعل اختيار الشبكة
-        networkOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                // إزالة التفعيل من الكل
-                networkOptions.forEach(opt => opt.classList.remove('active'));
-                // تفعيل الحالي
-                this.classList.add('active');
-                
-                selectedNetwork = this.getAttribute('data-network');
-                networkNameArabic = this.innerText;
-
-                // تحديث القائمة المنسدلة للباقات
-                updatePackages(selectedNetwork);
-                checkFormValidity();
-            });
-        });
-
-        // دالة تحديث الباقات بناءً على الشبكة
-        function updatePackages(network) {
-            packageSelect.innerHTML = '<option value="">اختر الباقة المناسبة...</option>';
-            packageSelect.disabled = false;
-
-            packagesData[network].forEach(pkg => {
-                const option = document.createElement('option');
-                option.value = pkg.text;
-                option.textContent = pkg.text;
-                packageSelect.appendChild(option);
-            });
-        }
-
-        // مراقبة حقول الإدخال لتفعيل زر الإرسال
-        phoneNumber.addEventListener('input', checkFormValidity);
-        packageSelect.addEventListener('change', checkFormValidity);
-
-        function checkFormValidity() {
-            if (selectedNetwork !== '' && phoneNumber.value.length >= 10 && packageSelect.value !== '') {
-                submitBtn.disabled = false;
-                
-                // تغيير لون الزر حسب الشبكة
-                if(selectedNetwork === 'vodafone') submitBtn.style.backgroundColor = 'var(--vodafone)';
-                if(selectedNetwork === 'etisalat') submitBtn.style.backgroundColor = 'var(--etisalat)';
-                if(selectedNetwork === 'orange') submitBtn.style.backgroundColor = 'var(--orange)';
-                if(selectedNetwork === 'we') submitBtn.style.backgroundColor = 'var(--we)';
-            } else {
-                submitBtn.disabled = true;
-                submitBtn.style.backgroundColor = '#bdc3c7';
-            }
-        }
-
-        // عملية الإرسال الوهمي
-        submitBtn.addEventListener('click', function() {
-            document.getElementById('receiptNetwork').innerText = networkNameArabic;
-            document.getElementById('receiptNumber').innerText = phoneNumber.value;
-            document.getElementById('receiptPackage').innerText = packageSelect.value;
+        function openModal(network, packageDesc) {
+            document.getElementById('modalTitle').innerText = 'تأكيد شحن ' + network;
+            document.getElementById('modalDesc').innerText = packageDesc;
             
-            document.getElementById('successModal').style.display = 'flex';
-        });
+            document.getElementById('inputSection').style.display = 'block';
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('successMsg').style.display = 'none';
+            document.getElementById('mobileNumber').value = '';
+            
+            document.getElementById('chargeModal').style.display = 'flex';
+        }
 
-        // إغلاق النافذة المنبثقة وإعادة تعيين النموذج
         function closeModal() {
-            document.getElementById('successModal').style.display = 'none';
-            phoneNumber.value = '';
-            packageSelect.selectedIndex = 0;
-            checkFormValidity();
+            document.getElementById('chargeModal').style.display = 'none';
+        }
+
+        function processCharge() {
+            const num = document.getElementById('mobileNumber').value;
+            if(num.length < 10) {
+                alert("برجاء إدخال رقم موبايل صحيح أولاً!");
+                return;
+            }
+
+            document.getElementById('inputSection').style.display = 'none';
+            document.getElementById('loader').style.display = 'block';
+
+            setTimeout(() => {
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('successMsg').style.display = 'block';
+                document.getElementById('receiptDetails').innerText = "تم التنفيذ للرقم: " + num;
+            }, 2000);
         }
     </script>
 </body>
